@@ -1,0 +1,67 @@
+<div class="container" *ngIf="this.ListaUsuarios && this.ListaUsuarios.length > 0">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="UsuarioId">
+      <th mat-header-cell *matHeaderCellDef> Id </th>
+      <td mat-cell *matCellDef="let element"> {{element.usuarioId}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="Nome">
+      <th mat-header-cell *matHeaderCellDef> Nome </th>
+      <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="Sobrenome">
+      <th mat-header-cell *matHeaderCellDef> Sobrenome </th>
+      <td mat-cell *matCellDef="let element"> {{element.sobrenome}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="Email">
+      <th mat-header-cell *matHeaderCellDef> Email </th>
+      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="DtNascimento">
+        <th mat-header-cell *matHeaderCellDef> Data de Nascimento </th>
+        <td mat-cell *matCellDef="let element"> {{element.dtNascimento | date:'dd/MM/yyyy'}} </td>
+      </ng-container>
+
+    <ng-container matColumnDef="Escolaridade">
+        <th mat-header-cell *matHeaderCellDef> Escolaridade </th>
+        <td mat-cell *matCellDef="let element"> 
+          <div *ngIf="element.escolaridade === 0">
+            Infantil
+          </div>
+          <div *ngIf="element.escolaridade === 1">
+            Fundamental
+          </div>
+          <div *ngIf="element.escolaridade === 2">
+            Médio
+          </div>
+          <div *ngIf="element.escolaridade === 3">
+            Superior
+          </div>
+        
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Acoes">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element"> 
+        <button mat-icon-button matTooltip="Excluir usuário" (click)="excluirUsuario(element.usuarioId)" ><mat-icon>delete</mat-icon></button>
+        <button mat-icon-button matTooltip="Editar usuário" (click)="atualizarUsuario(element)"><mat-icon>edit</mat-icon></button>   
+
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
+
+<div class="container" *ngIf="!this.ListaUsuarios || this.ListaUsuarios.length == 0">
+  Não há usuários cadastrados. Clique no botão ao lado para adicionar!
+</div>
+
+ 
+<button  mat-fab color="primary" id="add-button" matTooltip="Adicionar novo usuário" (click)="adicionarUsuario()"><i class="material-icons" >group_add</i></button>

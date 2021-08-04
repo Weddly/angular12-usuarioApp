@@ -1,0 +1,53 @@
+<h3 *ngIf="!ehEdicao">Cadastrar novo usuário</h3>
+<h3 *ngIf="ehEdicao">Atualizar usuário</h3>
+
+
+<form [formGroup]="formulario">
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Nome</mat-label>
+        <input matInput formControlName="nome">
+        <mat-error>
+            Campo obrigatório
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Sobrenome</mat-label>
+        <input matInput formControlName="sobrenome">
+        <mat-error>
+            Campo obrigatório
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email">
+        <mat-error>
+            Por favor, digitar um e-mail válido
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Data de Nascimento</mat-label>
+        <input matInput [matDatepicker]="picker" [max]="maxDate" formControlName="dtNascimento">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error>
+            Campo obrigatório
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Escolaridade</mat-label>
+        <mat-select formControlName="escolaridade">
+          <mat-option *ngFor="let escolaridade of escolaridades" [value]="escolaridade.value">
+            {{escolaridade.viewValue}}
+          </mat-option>
+        </mat-select>
+        <mat-error>
+            Campo obrigatório
+        </mat-error>
+    </mat-form-field>
+</form>
+<mat-divider></mat-divider>
+<mat-dialog-actions align="center">
+    <button mat-raised-button color="primary" (click)="salvarUsuario()" *ngIf="!ehEdicao">Criar</button>
+    <button mat-raised-button color="primary" (click)="atualizarUsuario()" *ngIf="ehEdicao">Alterar</button>
+
+</mat-dialog-actions>

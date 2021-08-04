@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+}
+
+mat-card {
+    width: 80%;
+    align-content: center;
+    padding: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    background-color: #673ab7;
+}
+
+.titulo {
+    text-align: center;
+    font-family: sans-serif;
+    font-variant-caps: petite-caps;
+    color: #fff;
+}
