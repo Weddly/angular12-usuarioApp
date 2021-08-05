@@ -24,6 +24,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatDividerModule} from '@angular/material/divider';
 import { DatePipe } from '@angular/common';
 import { MAT_DATE_LOCALE } from '@angular/material/core'
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 
 
@@ -55,7 +57,8 @@ import { MAT_DATE_LOCALE } from '@angular/material/core'
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatDividerModule
+    MatDividerModule,
+    MatSnackBarModule
   ],
   providers: [
     SharedService, 

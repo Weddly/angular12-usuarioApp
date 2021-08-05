@@ -7,7 +7,7 @@ import { UsuarioModel } from 'src/data/models/usuarioModel';
   providedIn: 'root'
 })
 export class SharedService {
-  readonly APIUrl="https://localhost:44346/api/Usuarios";
+  readonly APIUrl="http://localhost:10382/api/Usuarios";
 
   constructor(private http:HttpClient) { }
 

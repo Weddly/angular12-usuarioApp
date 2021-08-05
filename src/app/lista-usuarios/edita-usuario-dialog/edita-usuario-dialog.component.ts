@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { SharedService } from 'src/app/shared.service';
 
 interface Escolaridade {
@@ -35,6 +36,7 @@ export class EditaUsuarioDialog implements OnInit {
   constructor(
     private _service: SharedService,
     private _formBuider: FormBuilder,
+    private _snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<EditaUsuarioDialog>,
     @Inject(MAT_DIALOG_DATA) 
     public data: {
@@ -104,7 +106,7 @@ export class EditaUsuarioDialog implements OnInit {
       }
 
       this._service.adicionaUsuario(val).subscribe(res=> {
-        alert(res.status);
+        this._snackBar.open(res.status,'Fechar');
         this.dialogRef.close();
       })
     } else {
@@ -125,7 +127,7 @@ export class EditaUsuarioDialog implements OnInit {
       }
 
       this._service.atualizaUsuario(val).subscribe(res=> {
-        alert(res.status);
+        this._snackBar.open(res.status, 'Fechar');
         this.dialogRef.close();
       })
     } else {
