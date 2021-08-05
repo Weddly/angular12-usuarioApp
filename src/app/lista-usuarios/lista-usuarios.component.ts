@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/shared.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { EditaUsuarioDialog } from './edita-usuario-dialog/edita-usuario-dialog.component';
-import { DatePipe } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-lista-usuarios',
@@ -11,7 +11,7 @@ import { DatePipe } from '@angular/common';
 })
 export class ListaUsuariosComponent implements OnInit {
 
-  constructor(private _service: SharedService, public dialog: MatDialog, datePipe: DatePipe) { }
+  constructor(private _service: SharedService, public dialog: MatDialog, private _snackBar: MatSnackBar) { }
 
   ListaUsuarios:any=[];
 
@@ -32,7 +32,7 @@ export class ListaUsuariosComponent implements OnInit {
   excluirUsuario(id: string) {
     this._service.removeUsuario(id).subscribe(res=> {
       this.atualizaListaUsuarios();
-      alert(res.status);
+      this._snackBar.open(res.status, 'Fechar');
     });
   }
 
